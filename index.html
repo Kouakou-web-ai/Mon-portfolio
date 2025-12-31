@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Professionnel | Kouakou Mondesire</title>
+    <meta name="description" content="Portfolio de Kouakou Mondesire">
+    <meta name="keywords" content="portfolio, Kouakou Mondesire, développeur web">
+    <meta name="author" content="Kouakou Mondesire">
+    <link rel="shortcut icon" href="images/mon-logo.png" type="*">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav id="navbar" class="navbar">
+        <div class="container">
+            <div class="logo">
+                <span class="gradient-text">Mon portfolio</span>
+                <img src="images/mon-logo.png" alt="mon logo" width="30px">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#profil" class="nav-link active">Profil</a></li>
+                <li><a href="#formation" class="nav-link">Formation</a></li>
+                <li><a href="#cv" class="nav-link">CV</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Changer de thème">
+                    <i data-lucide="sun" id="sun-icon"></i>
+                    <i data-lucide="moon" id="moon-icon"></i>
+                </button>
+                <div class="mobile-menu-btn" id="mobile-btn">
+                    <i data-lucide="menu" id="menu-icon"></i>
+                    <i data-lucide="x" id="close-icon" style="display: none;"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+
+        <!--section hero / profil-->
+        <section id="profil" class="hero-section">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="badge">Disponible pour de nouveaux projets</span>
+                    <h1>Salut, je suis <span class="gradient-text">KOUAKOU ATSE <br>ISMAEL MONDESIRE</span></h1>
+                    <p class="hero-subtitle">Développeur Front-end & Designer UI/UX passionné par la création
+                        d'expériences numériques élégantes et performantes.</p>
+                    <div class="hero-cta">
+                        <a href="#cv" class="btn btn-primary">Voir mon CV</a>
+                        <a href="#contact" class="btn btn-outline">Me contacter</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="profile-card">
+                        <div class="card-inner">
+                            <div class="profile-img-container">
+                                <img src="images/Ma-photo.jpeg" alt="KOUAKOU ATSE ISMAEL MONDESIRE" class="profile-img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--section formation-->
+        <section id="formation" class="section">  
+            <div class="container">
+                <h2 class="section-title">Ma <span class="gradient-text">Formation</span></h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Développement Web Front-end</h3>
+                            <p class="institution">Gomycode</p>
+                            <span class="date">Octobre 2025 - Décembre 2025</span>
+                            <p class="description">Formation intensive axée sur les technologies front-end modernes, le
+                                responsive design et les meilleures pratiques de développement.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!--section cv-->
+        <section id="cv" class="section bg-alt">
+            <div class="container">
+                <h2 class="section-title">Mon <span class="gradient-text">CV</span></h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Design</h3>
+                        <div class="skill-tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">Photoshop</span>
+                            <span class="tag">Illustrator</span>
+                        </div>
+                    </div>
+                    <div class="skill-category">
+                        <h3>Développement</h3>
+                        <div class="skill-tags">
+                            <span class="tag">HTML</span>
+                            <span class="tag">CSS</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Bootstrap</span>
+                            <span class="tag">Git & GitHub</span>
+                            <span class="tag">Développement avec IA</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="cv-action">
+                    <a href="docs/mon-cv.pdf" class="btn btn-primary" download="mon-cv.pdf">
+                        <i data-lucide="download" class=""></i> Télécharger CV (PDF)
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!--section contact-->
+        <section id="contact" class="section">
+            <div class="container contact-container">
+                <div class="contact-header">
+                    <h2 class="section-title">Parlons de votre <span class="gradient-text">Projet</span></h2>
+                    <p>Une idée ? Un besoin ? N'hésitez pas à m'envoyer un message.</p>
+                </div>
+                <div class="contact-grid centered">
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i data-lucide="mail"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>truixk@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="phone"></i>
+                            <div>
+                                <h4>Téléphone</h4>
+                                <p>+225 01 72 64 91 10</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i data-lucide="map-pin"></i>
+                            <div>
+                                <h4>Localisation</h4>
+                                <p>Côte d'Ivoire</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!--footer-->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 KOUAKOU ATSE ISMAEL MONDESIRE. Tous droits réservés.</p>
+                <div class="social-links">
+                    <a href="https://wa.me/2250172649110" class="fa-whatsapp" target="_blank"><i data-lucide="phone"></i></a>
+                    <a href="https://www.facebook.com/kayim.truix.7" class="fa-facebook" target="_blank"><i data-lucide="facebook"></i></a>
+                    <a href="https://www.instagram.com/kayimtruixofficiel?igsh=MXNxbTJwemNrNDVxbw==" class="fa-instagram" target="_blank"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>
