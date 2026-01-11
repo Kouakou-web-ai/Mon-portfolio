@@ -26,6 +26,9 @@
 
 <body>
 
+    <!-- Animated Stars Background -->
+    <div class="stars-container"></div>
+
     <!-- Preloader -->
     <div id="preloader">
         <div class="loader-content">
@@ -69,26 +72,36 @@
         <!--section hero / profil-->
         <section id="profil" class="hero-section">
             <div class="container hero-grid">
-                <div class="hero-content reveal-up">
-                    <span class="badge">Disponible pour de nouveaux projets</span>
-                    <h1>
-                        <span class="typing-text">Salut, je suis</span> <br>
-                        <span class="gradient-text animate-name">KOUAKOU ATSE <br>ISMAEL MONDESIRE</span>
-                    </h1>
-                    <p class="hero-subtitle">Développeur Front-end & Designer UI/UX passionné par la création
+                <div class="hero-content">
+                    <span class="badge typing-text">Disponible pour de nouveaux projets</span>
+
+                    <div class="hero-header-flex">
+                        <div class="hero-text-group">
+                            <h1>
+                                <span class="typing-text">Salut, je suis</span> <br>
+                                <span class="gradient-text animate-name typing-text">KOUAKOU ATSE <br>ISMAEL
+                                    MONDESIRE</span>
+                            </h1>
+                        </div>
+
+                        <div class="hero-visual">
+                            <div class="profile-card" data-tilt data-tilt-full-page-listening>
+                                <div class="card-inner">
+                                    <div class="profile-img-container">
+                                        <img src="images/Ma-photo.jpeg" alt="KOUAKOU ATSE ISMAEL MONDESIRE"
+                                            class="profile-img">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="hero-subtitle typing-text">Développeur Front-end & Designer UI/UX passionné par la
+                        création
                         d'expériences numériques élégantes et performantes.</p>
                     <div class="hero-cta">
                         <a href="#cv" class="btn btn-primary pulse-btn">Voir mon CV</a>
                         <a href="#contact" class="btn btn-outline">Me contacter</a>
-                    </div>
-                </div>
-                <div class="hero-visual reveal-left" style="transition-delay: 0.2s">
-                    <div class="profile-card" data-tilt data-tilt-full-page-listening>
-                        <div class="card-inner">
-                            <div class="profile-img-container">
-                                <img src="images/Ma-photo.jpeg" alt="KOUAKOU ATSE ISMAEL MONDESIRE" class="profile-img">
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -435,10 +448,6 @@
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <a href="#" id="back-to-top" class="back-to-top-btn" aria-label="Retour en haut">
-        <i data-lucide="arrow-up"></i>
-    </a>
 
     <script src="js/script.js"></script>
 </body>

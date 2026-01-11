@@ -108,24 +108,6 @@ revealElements.forEach(element => {
     revealObserver.observe(element);
 });
 
-// Back to Top Button Logic
-const backToTopBtn = document.getElementById('back-to-top');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 300) {
-        backToTopBtn.classList.add('visible');
-    } else {
-        backToTopBtn.classList.remove('visible');
-    }
-});
-
-backToTopBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-});
 
 // Preloader Logic
 window.addEventListener('load', () => {
@@ -138,3 +120,60 @@ window.addEventListener('load', () => {
 
 // Dynamic Year
 document.getElementById('current-year').textContent = new Date().getFullYear();
+
+// Animated Stars Background
+function createStars() {
+    const starsContainer = document.querySelector('.stars-container');
+    const numberOfStars = 50; // Number of individual stars
+
+    for (let i = 0; i < numberOfStars; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+
+        // Random position
+        const x = Math.random() * 100;
+        const y = Math.random() * 100;
+
+        // Random size (1-4px)
+        const size = Math.random() * 3 + 1;
+
+        // Random animation duration (20-60s)
+        const duration = Math.random() * 40 + 20;
+
+        // Random delay
+        const delay = Math.random() * 10;
+
+        // Random opacity
+        const opacity = Math.random() * 0.5 + 0.3;
+
+        // Random color from gradient palette
+        const colors = [
+            'rgba(255, 255, 255, ' + opacity + ')',
+            'rgba(129, 140, 248, ' + opacity + ')',
+            'rgba(168, 85, 247, ' + opacity + ')',
+            'rgba(192, 132, 252, ' + opacity + ')',
+            'rgba(99, 102, 241, ' + opacity + ')'
+        ];
+        const color = colors[Math.floor(Math.random() * colors.length)];
+
+        star.style.cssText = `
+            position: absolute;
+            left: ${x}%;
+            top: ${y}%;
+            width: ${size}px;
+            height: ${size}px;
+            background: ${color};
+            border-radius: 50%;
+            box-shadow: 0 0 ${size * 2}px ${color};
+            animation: starTwinkle ${duration}s ease-in-out infinite;
+            animation-delay: ${delay}s;
+        `;
+
+        starsContainer.appendChild(star);
+    }
+}
+
+// Initialize stars when page loads
+window.addEventListener('load', () => {
+    createStars();
+});
