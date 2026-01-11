@@ -194,13 +194,38 @@ h4,
     align-items: center;
     gap: 0.5rem;
     padding: 0.75rem 1.5rem;
-    border-radius: 12px;
-    font-weight: 600;
+    border-radius: 50px;
+    font-weight: 500;
     text-decoration: none;
     cursor: pointer;
-    transition: all var(--transition-medium);
+    transition: all 0.3s ease;
     font-family: var(--font-primary);
-    font-size: 1rem;
+    font-size: 0.95rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Button Active State (Click) */
+.btn:active {
+    transform: scale(0.95) !important;
+}
+
+/* Shine Effect for Buttons */
+.btn::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.btn:hover::after {
+    left: 100%;
 }
 
 .btn-primary {
@@ -212,6 +237,27 @@ h4,
 .btn-primary:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.4);
+}
+
+.pulse-btn {
+    animation: pulse-breathing 2s infinite ease-in-out;
+}
+
+@keyframes pulse-breathing {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.7);
+    }
+
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px 10px rgba(99, 102, 241, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(99, 102, 241, 0);
+    }
 }
 
 .btn-outline {
@@ -798,13 +844,65 @@ h4,
         padding: 1.5rem;
     }
 
-    .skill-tags {
-        gap: 0.5rem;
+    .skill-icons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        justify-content: center;
     }
 
-    .tag {
-        font-size: 0.85rem;
-        padding: 0.4rem 0.875rem;
+    .skill-icon-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 1rem;
+        background: var(--bg-secondary);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        transition: all var(--transition-medium);
+        cursor: pointer;
+        position: relative;
+    }
+
+    .skill-icon-wrapper i {
+        font-size: 3rem;
+        transition: all var(--transition-medium);
+    }
+
+    .skill-icon-wrapper:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        border-color: var(--accent-primary);
+    }
+
+    .skill-icon-wrapper:hover i {
+        transform: scale(1.1);
+        filter: drop-shadow(0 0 5px rgba(99, 102, 241, 0.5));
+    }
+
+    /* Tooltip/Name on hover */
+    .skill-icon-wrapper::after {
+        content: attr(data-name);
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+        background: var(--text-primary);
+        color: var(--bg-primary);
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        opacity: 0;
+        pointer-events: none;
+        transition: all var(--transition-fast);
+        white-space: nowrap;
+        z-index: 10;
+    }
+
+    .skill-icon-wrapper:hover::after {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
     }
 
     /* Contact */
@@ -1158,19 +1256,589 @@ h4,
     }
 }
 
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-primary);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
 
-.fa-whatsapp :hover {
+#preloader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-logo img {
+    width: 50px;
+    animation: pulse-breathing 1.5s infinite ease-in-out;
+    z-index: 2;
+    position: relative;
+}
+
+.loader-circle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: 3px solid transparent;
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 1;
+}
+
+.loader-circle::before {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border: 3px solid transparent;
+    border-top-color: var(--accent-secondary);
+    border-radius: 50%;
+    animation: spin 3s linear infinite;
+}
+
+.loader-circle::after {
+    content: "";
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+    border: 3px solid transparent;
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Back to Top Button */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    background: var(--gradient);
+    color: white;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    /* flex, but hidden by opacity/visibility initially via JS or class */
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.back-to-top-btn.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
+}
+
+.back-to-top-btn i,
+.back-to-top-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Mobile Layout Overrides for Skills (3 columns) */
+@media (max-width: 768px) {
+    .competences-grid {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 0.5rem !important;
+        padding: 0 0.5rem;
+    }
+
+    .competence-card {
+        flex-direction: column !important;
+        text-align: center;
+        padding: 0.75rem 0.25rem !important;
+        gap: 0.5rem !important;
+        aspect-ratio: 1/1.3;
+        justify-content: center;
+        min-height: auto;
+    }
+
+    .icon-box {
+        width: 35px !important;
+        height: 35px !important;
+        font-size: 1.25rem !important;
+        border-radius: 10px;
+    }
+
+    .competence-card i,
+    .competence-card .lucide-icon {
+        font-size: 1.25rem !important;
+        width: 1.25rem !important;
+        height: 1.25rem !important;
+    }
+
+    .competence-card h3 {
+        font-size: 0.7rem !important;
+        margin-bottom: 0 !important;
+        line-height: 1.2;
+    }
+
+    .competence-card p {
+        display: block !important;
+        font-size: 0.6rem !important;
+        opacity: 0.8;
+        line-height: 1.1;
+        margin-top: 0.25rem !important;
+    }
+
+    .card-text {
+        align-items: center;
+        width: 100%;
+    }
+}
+
+.fa-whatsapp:hover {
     color: #128C7E;
     transition: all 0.5s ease;
 }
 
-
-.fa-facebook :hover {
+.fa-facebook:hover {
     color: #1877F2;
     transition: all 0.5s ease;
 }
 
-.fa-instagram :hover {
+.fa-instagram:hover {
     color: #C13584;
     transition: all 0.5s ease;
+}
+
+/* Projects Section Styles */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.project-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    transition: all var(--transition-medium);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow);
+    border-color: var(--accent-primary);
+}
+
+.project-image {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-slow);
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.1);
+}
+
+.project-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity var(--transition-medium);
+}
+
+.project-card:hover .project-overlay {
+    opacity: 1;
+}
+
+.project-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.project-content h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.project-content p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    flex-grow: 1;
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: 0.85rem;
+}
+
+/* Scroll Animations */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.reveal-left {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.reveal-right {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+}
+
+.reveal-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Staggered delays */
+.delay-300 {
+    transition-delay: 0.3s;
+}
+
+/* Enhanced Animations */
+
+/* Typing Text */
+.typing-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    /* border-right: 3px solid var(--accent-primary); removed cursor */
+    animation: typing 3.5s ease-out;
+    /* changed steps to ease-out and removed blink */
+    max-width: 100%;
+}
+
+@keyframes typing {
+    from {
+        max-width: 0;
+    }
+
+    to {
+        max-width: 100%;
+    }
+}
+
+/* @keyframes blink-caret removed */
+/* Circulating/Shine Name Animation */
+.animate-name {
+    display: inline-block;
+    background: linear-gradient(to right,
+            #6366f1 20%,
+            #a855f7 40%,
+            #ec4899 60%,
+            #6366f1 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 4s linear infinite;
+    text-shadow: 0 0 30px rgba(99, 102, 241, 0.1);
+}
+
+@keyframes shine {
+    to {
+        background-position: 200% center;
+    }
+}
+
+
+/* Section Subtitle */
+.section-subtitle {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    margin-top: -2rem;
+}
+
+/* Floating Icons */
+.skill-icon-wrapper {
+    animation: float 6s ease-in-out infinite;
+}
+
+/* Stagger different icons to look more natural */
+.skill-icon-wrapper:nth-child(even) {
+    animation-delay: 1s;
+}
+
+.skill-icon-wrapper:nth-child(3n) {
+    animation-delay: 2s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Ensure hover overrides float for interaction */
+.skill-icon-wrapper:hover {
+    animation-play-state: paused;
+    transform: translateY(-5px) scale(1.05);
+}
+
+
+
+/* Competences Section */
+
+/* Project Subtitle Animation */
+.animated-subtitle-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    margin-top: -2rem;
+    overflow: hidden;
+}
+
+.animated-subtitle {
+    font-size: 1.1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg,
+            var(--accent-primary),
+            var(--accent-secondary),
+            var(--accent-primary));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine-text 3s linear infinite, bounce-sub 2s ease-in-out infinite;
+    position: relative;
+    padding: 0.5rem 1rem;
+    border-radius: 50px;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    background-color: rgba(99, 102, 241, 0.05);
+}
+
+@keyframes shine-text {
+    to {
+        background-position: 200% center;
+    }
+}
+
+@keyframes bounce-sub {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Competences Grid */
+.competences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    justify-content: center;
+    perspective: 1000px;
+}
+
+.competence-card {
+    background: rgba(255, 255, 255, 0.05);
+    /* Glassmorphism base */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 1.5rem;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Light mode specific adjustment for glassmorphism if needed */
+[data-theme="light"] .competence-card {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+.competence-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(168, 85, 247, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    z-index: 0;
+}
+
+.competence-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: rgba(99, 102, 241, 0.5);
+    box-shadow: 0 20px 40px -15px rgba(99, 102, 241, 0.3);
+}
+
+.competence-card:hover::before {
+    opacity: 1;
+}
+
+.icon-box {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-secondary);
+    border-radius: 15px;
+    font-size: 2.5rem;
+    transition: all 0.4s ease;
+    z-index: 1;
+    flex-shrink: 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.competence-card:hover .icon-box {
+    transform: scale(1.1) rotate(5deg);
+    background: var(--bg-primary);
+    box-shadow: 0 8px 20px rgba(99, 102, 241, 0.2);
+}
+
+.competence-card i,
+.competence-card .lucide-icon {
+    font-size: 2.5rem;
+    /* Removed width and height constraints for font icons */
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+}
+
+.competence-card .lucide-icon {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: var(--accent-primary);
+}
+
+.card-text {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.competence-card h3 {
+    font-size: 1.25rem;
+    margin: 0;
+    margin-bottom: 0.25rem;
+    color: var(--text-primary);
+    transition: color 0.3s ease;
+}
+
+.competence-card p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    transition: color 0.3s ease;
+}
+
+.competence-card:hover h3 {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.competence-card:hover p {
+    color: var(--text-primary);
 }
